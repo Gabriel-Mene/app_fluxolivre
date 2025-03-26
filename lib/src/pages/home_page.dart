@@ -111,7 +111,8 @@ class _HomePageState extends State<HomePage> {
                       },
                       child: const Text(
                         'Desconectar',
-                        style: TextStyle(color: Color.fromARGB(255, 255, 255, 255), decoration: TextDecoration.underline, decorationColor: Color.fromARGB(255, 255, 255, 255) , ),
+                        style: TextStyle(color: Color.fromARGB(255, 255, 255, 255), 
+                        decoration: TextDecoration.underline, decorationColor: Color.fromARGB(255, 255, 255, 255), fontSize: 20),
                       ),
                     ),
                   ),

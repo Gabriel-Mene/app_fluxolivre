@@ -46,7 +46,7 @@ class CadastroPage extends StatelessWidget {
                       ),
                       child:
                       const Text('Cadastrar', style: TextStyle(
-                        decoration: TextDecoration.underline, decorationColor: Color.fromARGB(255, 0, 0, 0), fontSize: 15,
+                        decoration: TextDecoration.underline, fontSize: 15,decorationColor: Color.fromARGB(255, 0, 0, 0)
                       ),),
                     ),
                   ),
