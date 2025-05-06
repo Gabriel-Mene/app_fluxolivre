@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-
-class HomePage extends StatefulWidget  {
-
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
@@ -10,28 +8,22 @@ class HomePage extends StatefulWidget  {
 }
 
 class _HomePageState extends State<HomePage> {
-  int count=0;
+  int count = 0;
 
-  void increment(){
-
+  void incremented() {
     setState(() {
       count++;
-    
     });
   }
 
-  void decrement(){
-
+  void decrement() {
     setState(() {
       count--;
     });
   }
 
-
-  bool get zerado => count == 0;
-  bool get cheio => count == 2;
-
-
+  bool get isEmpty => count == 0;
+  bool get isFull => count == 10;
 
   @override
   Widget build(BuildContext context) {
@@ -40,89 +32,76 @@ class _HomePageState extends State<HomePage> {
         alignment: Alignment.center,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/img_fundo.png"),
-            fit: BoxFit.cover)
+            image: AssetImage('assets/images/img_fundo.png'),
+            fit: BoxFit.cover,
+          ),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(cheio ? "Acesso Bloqueado" : "Acesso Liberado",
-            style: TextStyle(
-              color: Color.fromARGB(255, 255, 255, 255),
-              fontSize: 40,
-              fontWeight: FontWeight.w500,
+            Text(
+              isFull ? 'Acesso Bloqueado' : 'Acesso Liberado',
+              style: TextStyle(
+                color: isFull ? Color(0xFFFF0000) : Color(0xFFFFFFFF),
+                fontSize: 40,
+                fontWeight: FontWeight.w500,
+              ),
             ),
-            ),
-            Text(count.toString(),
-            style: TextStyle(
-              color: Color.fromARGB(255, 255, 255, 255),
-              fontSize: 40,
-              fontWeight: FontWeight.w500,
-            ),
+            Text(
+              count.toString(),
+              style: TextStyle(
+                color: Color(0xFFFFFFFF),
+                fontSize: 60,
+                fontWeight: FontWeight.w500,
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 255, 0, 0),
-                    disabledBackgroundColor: const Color.fromARGB(255, 43, 41, 41),
-                    fixedSize: const Size(110,50),
+                    backgroundColor:
+                        isEmpty ? Color(0xAAAFAE24) : Color(0xFFAFAE24),
+                    fixedSize: const Size(110, 75),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(24),
-                    )
-                  ),
-                  onPressed: zerado ? null : decrement,
-                  child: const Text("Sair",
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Color.fromARGB(255, 255, 255, 255),
-                    fontWeight: FontWeight.w500,
-                  ),),
-                  ),
-                  SizedBox(width: 40,),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 46, 197, 0),
-                    disabledBackgroundColor: const Color.fromARGB(255, 43, 41, 41),
-                    fixedSize: const Size(110,50),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(24),
-                    )
-                  ),
-                  onPressed: cheio ? null : increment,
-                  child: const Text("Entrar",
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Color.fromARGB(255, 255, 255, 255),
-                    fontWeight: FontWeight.w500,
-                  ),
-                  ),
-                  ),
-              ],
-            ),
-            const SizedBox(height: 10),
-              Row(
-                children: [
-                  Expanded(
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.pushReplacementNamed(context, '/');
-                      },
-                      child: const Text(
-                        'Desconectar',
-                        style: TextStyle(color: Color.fromARGB(255, 255, 255, 255), 
-                        decoration: TextDecoration.underline, decorationColor: Color.fromARGB(255, 255, 255, 255), fontSize: 20),
-                      ),
                     ),
                   ),
-                ],
-              ),
+                  onPressed: isEmpty ? () {} : decrement,
+                  child: const Text(
+                    'Sair',
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Color(0xFF031CF5),
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 40),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor:
+                        isFull ? Color(0xAAAFAE24) : Color(0xFFAFAE24),
+                    fixedSize: const Size(110, 75),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(24),
+                    ),
+                  ),
+                  onPressed: isFull ? () {} : incremented,
+                  child: const Text(
+                    'Entrar',
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Color(0xFF031CF5),
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ],
-         
         ),
       ),
     );
   }
 }
-
